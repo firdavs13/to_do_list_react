@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
+import Buttons from "./components/Buttons/Buttons";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -18,6 +19,7 @@ function App() {
               setTodos={setTodos}
             />
             <List todos={todos} setTodos={setTodos}/>
+            <Buttons todos={todos} setTodos={setTodos}/>
           </div>
         </div>
       </section>
