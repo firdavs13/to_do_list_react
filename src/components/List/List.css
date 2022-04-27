@@ -21,4 +21,13 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  .edit-btn {
+    margin-right: 5px;
+  }
+
+  .active {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
   
