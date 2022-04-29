@@ -1,9 +1,10 @@
 import React from "react";
 import "./List.css";
 
-const List = ({ todos, setTodos }) => {
+const List = ({ todos, setTodos, savaStore }) => {
   const handleDelete = ({ id }) => {
     setTodos(todos.filter((todo) => todo.id !== id));
+    savaStore(todos.filter((todo) => todo.id !== id))
   };
 
   const handleEdit = (todo) => {
@@ -16,6 +17,7 @@ const List = ({ todos, setTodos }) => {
     });
 
     setTodos([...todos]);
+    savaStore([...todos])
   };
 
   const handleComlate = (id) => {
@@ -26,6 +28,7 @@ const List = ({ todos, setTodos }) => {
     });
 
     setTodos([...todos]);
+    savaStore([...todos])
   };
 
   return (
@@ -55,7 +58,7 @@ const List = ({ todos, setTodos }) => {
                   🗑️
                 </button>
               </div>
-              <p className="alert__text">{todo.text}</p>
+              <p className="alert__text">{todo.title}</p>
             </div>
           </div>
         </li>

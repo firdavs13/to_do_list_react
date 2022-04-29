@@ -4,30 +4,34 @@ import { v4 as uuidv4 } from "uuid";
 import List from "./components/List/List";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const localData = JSON.parse(localStorage.getItem("todos")) || []
+  const [todos, setTodos] = useState(localData);
 
-  useEffect(() => {
-    const todoStore = JSON.parse(localStorage.getItem("todoStore"));
-    if (todoStore) setTodos(todoStore)
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("todoStore", JSON.stringify(todos));
-  }, [todos]);
-  
+  const savaStore = (data, dataName = "todos") => {
+    localStorage.setItem(dataName, JSON.stringify(data))
+  } 
 
   const handleAddTodo = (evt) => {
     if (evt.keyCode === 13) {
       let newTodo = {
         id: uuidv4(),
-        text: evt.target.value,
+        title: evt.target.value,
         isComlate: false,
       };
 
       setTodos([newTodo, ...todos]);
       evt.target.value = "";
+
+      savaStore([newTodo, ...todos])
     }
   };
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((res) => res.json())
+    .then((data) => setTodos(data))
+    .catch((err) => console.log(err))
+  }, [])
 
   return (
     <div className="App">
@@ -48,7 +52,7 @@ function App() {
               />
             </div>
 
-            <List todos={todos} setTodos={setTodos} />
+            <List todos={todos} setTodos={setTodos} savaStore={savaStore} />
           </div>
         </div>
       </section>
