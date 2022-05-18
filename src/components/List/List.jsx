@@ -8,11 +8,11 @@ const List = ({ todos, setTodos, savaStore }) => {
   };
 
   const handleEdit = (todo) => {
-    let todoText = prompt("Textni ozgartiring", todo.text);
+    let todoText = prompt("Textni ozgartiring", todo.title);
 
     todos.forEach((itemTodos) => {
       if (itemTodos.id === todo.id) {
-        itemTodos.text = todoText;
+        itemTodos.title = todoText;
       }
     });
 

@@ -26,13 +26,6 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => res.json())
-    .then((data) => setTodos(data))
-    .catch((err) => console.log(err))
-  }, [])
-
   return (
     <div className="App">
       <section className="todo">
@@ -40,7 +33,7 @@ function App() {
           <h3 className="todo__heading">ToDo-List</h3>
 
           <div className="todo__wrapper">
-            <div className="input-group mb-3 mt-3 w-50">
+            <div className="input-group mb-3 mt-3 todo__input">
               <input
                 type="text"
                 className="form-control todo__input"
